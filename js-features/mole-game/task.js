@@ -4,6 +4,7 @@ getHole = index => document.getElementById(`hole${index}`);
 const hole1 = document.getElementById("hole1");
 
 for (i = 1; i = 10; i++) {
+    // index[i].onclick
     getHole[i].onclick = () => {
         if (dead.textContent === "10") {
             alert("Вы победили! )))");
