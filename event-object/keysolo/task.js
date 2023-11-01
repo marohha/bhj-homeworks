@@ -4,8 +4,11 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timer = document.getElementById("timer");
+    this.randomWord = "";
 
     this.reset();
+    this.timerStart();
 
     this.registerEvents();
   }
@@ -16,7 +19,19 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
+  
+
   registerEvents() {
+      document.addEventListener('keyup', (event) => {
+      if (event.key === 'Control' || event.key === 'Alt' || event.key === 'Shift') {
+        return;
+      }
+      if (event.key === this.currentSymbol) {
+        this.success();
+      } else {
+        this.fail();
+      } 
+      });
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -74,6 +89,7 @@ class Game {
       ],
       index = Math.floor(Math.random() * words.length);
 
+    this.randomWord = words[index];
     return words[index];
   }
 
@@ -87,6 +103,20 @@ class Game {
     this.wordElement.innerHTML = html;
 
     this.currentSymbol = this.wordElement.querySelector('.symbol_current');
+  }
+
+  timerStart() {
+    this.timer.textContent = this.randomWord.length;
+    const time = function() {
+      if (this.timer.textContent <= 0) {
+        alert('Вы проиграли!');
+        clearInterval(time);
+      } else {
+        this.timer.textContent --;
+      }
+    }
+
+    setInterval(time, 1000)
   }
 }
 
