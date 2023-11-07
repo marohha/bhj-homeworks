@@ -15,6 +15,7 @@ class Game {
 
   reset() {
     this.setNewWord();
+    this.timerStart();
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
@@ -107,18 +108,18 @@ class Game {
 
   timerStart() {
     this.timer.textContent = this.randomWord.length;
-    const time = function() {
+    const time = () => {
       if (this.timer.textContent <= 0) {
         alert('Вы проиграли!');
-        clearInterval(time);
+        clearInterval(intervalId);
       } else {
         this.timer.textContent --;
       }
-    }
+    };
 
-    setInterval(time, 1000)
+    const intervalId = setInterval(time, 1000);
   }
 }
 
-new Game(document.getElementById('game'))
+new Game(document.getElementById('game'));
 
