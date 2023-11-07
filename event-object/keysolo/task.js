@@ -108,16 +108,15 @@ class Game {
 
   timerStart() {
     this.timer.textContent = this.randomWord.length;
-    const time = () => {
+
+    const intervalId = setInterval( () => {
       if (this.timer.textContent <= 0) {
         alert('Вы проиграли!');
         clearInterval(intervalId);
       } else {
         this.timer.textContent --;
       }
-    };
-
-    const intervalId = setInterval(time, 1000);
+    }, 1000);
   }
 }
 
