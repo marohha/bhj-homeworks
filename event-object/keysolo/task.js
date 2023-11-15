@@ -24,14 +24,12 @@ class Game {
 
   registerEvents() {
       document.addEventListener('keyup', (event) => {
+      let currentSymbol = this.currentSymbol.textContent;
       if (event.key === 'Control' || event.key === 'Alt' || event.key === 'Shift') {
         return;
       }
-      if (event.key === this.currentSymbol) {
-        this.success();
-      } else {
-        this.fail();
-      } 
+
+      event.key === currentSymbol ? this.success() : this.fail();
       });
     /*
       TODO:
