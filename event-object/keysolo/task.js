@@ -6,6 +6,7 @@ class Game {
     this.lossElement = container.querySelector('.status__loss');
     this.timer = document.getElementById("timer");
     this.randomWord = "";
+    this.intervalId = null;
 
     this.reset();
     this.timerStart();
@@ -15,7 +16,6 @@ class Game {
 
   reset() {
     this.setNewWord();
-    this.timerStart();
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
@@ -70,6 +70,7 @@ class Game {
     const word = this.getWord();
 
     this.renderWord(word);
+    this.timerStart();
   }
 
   getWord() {
@@ -105,6 +106,10 @@ class Game {
   }
 
   timerStart() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
+    };
+
     this.timer.textContent = this.randomWord.length;
 
     const intervalId = setInterval( () => {
