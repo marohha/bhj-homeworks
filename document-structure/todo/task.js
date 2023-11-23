@@ -1,10 +1,16 @@
 const taskText  = document.getElementById('task__input');
 const addBtn = document.getElementById('tasks__add');
-const task = document.querySelector('.task')[0];
-const taskTitle = document.querySelector('.task__title');
 const tasksList = document.getElementById('tasks__list');
 
-addBtn.addEventListener('click', (el) => {
-    el.preventDefault();
-    tasksList.appendChild(task.cloneNode(true));
+taskText.addEventListener('keydown', el => {
+    if (el.key === 'Enter' && taskText.value.length != 0) {
+        tasksList.innerHTML += 
+        `<div class="task">
+            <div class="task__title">
+                ${taskText.value}
+            </div>
+            <a href="#" class="task__remove">&times;</a>
+        </div>`;
+        taskText.value = null; 
+    }
 })
