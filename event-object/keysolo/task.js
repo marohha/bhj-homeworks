@@ -60,8 +60,8 @@ class Game {
 
   fail() {
     if (++this.lossElement.textContent === 5) {
-      alert('Вы проиграли!');
       this.reset();
+      alert('Вы проиграли!');
     }
     this.setNewWord();
   }
@@ -114,8 +114,8 @@ class Game {
 
     const intervalId = setInterval( () => {
       if (this.timer.textContent <= 0) {
-        alert('Вы проиграли!');
         clearInterval(intervalId);
+        alert('Вы проиграли!');
       } else {
         this.timer.textContent --;
       }

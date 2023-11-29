@@ -8,3 +8,19 @@ textarea {
   border: 1px solid #e2e2e2;
   box-sizing: border-box;
 }
+
+.button {
+  width: 150px;
+  height: 50px;
+  background-color: bisque;
+  color: #000;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.button:hover {
+  background-color: red;
+  color: #e2e2e2;
+}
