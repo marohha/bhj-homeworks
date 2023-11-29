@@ -1,24 +1,7 @@
-// const btn = document.getElementById('signin__btn');
-// const welcome = document.getElementById('welcome');
-// const form = document.getElementById('signin__form');
-
-// form.addEventListener('submit', (el) => {
-//     el.preventDefault();
-//     const xhr = new XMLHttpRequest();
-    
-    
-    
-//     xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/auth');
-//     const formData = new FormData(form);
-//     xhr.send(formData);
-// })
-
-// const answerJson = JSON.parse(xhr);
-
-// answerJson.success === true ? welcome.classList.add('welcome_active') : alert('Неверный логин/пароль');
-
-
 const form = document.querySelector('#signin__form');
+const welcome = document.getElementById('welcome');
+const signin = document.getElementById('signin');
+const userId = document.getElementById('user_id');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -30,9 +13,15 @@ form.addEventListener('submit', e => {
   
   xhr.addEventListener('load', () => {
     console.log(xhr.response);
+    if (xhr.response.success === true) {
+        signin.classList.remove('signin_active');
+        welcome.classList.add('welcome_active');
+        userId.textContent = xhr.response.user_id;
+    } else {
+        alert('Неверный логин/пароль');
+    }
   });
   
   xhr.open('POST', form.action);
-  
   xhr.send(formData);
 });
