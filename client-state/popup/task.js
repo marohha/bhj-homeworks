@@ -20,7 +20,7 @@ const closeBtn = document.querySelector('.modal__close');
 // Не записываются и не выводит даже в консоль куки, выводит пустую строку.
 
 const setCookie = (name, value) => {
-    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+    document.cookie = name + '=' + encodeURIComponent(value);
 }
 
 const getCookie = (name) => {
