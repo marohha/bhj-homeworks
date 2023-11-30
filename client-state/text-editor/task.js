@@ -1,9 +1,7 @@
 const saveText = document.getElementById('editor');
 const btn = document.querySelector('.button');
 
-if (localStorage.getItem('text') !== null) {
-    saveText.value = localStorage.getItem('text');
-} 
+saveText.value = localStorage.getItem('text'); 
 
 document.addEventListener('keydown', () => {
     localStorage.setItem('text', saveText.value);

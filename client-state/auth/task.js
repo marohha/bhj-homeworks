@@ -2,6 +2,14 @@ const form = document.querySelector('#signin__form');
 const welcome = document.getElementById('welcome');
 const signin = document.getElementById('signin');
 const userId = document.getElementById('user_id');
+const singoutBtn = document.getElementById('signout__btn');
+
+const ifAuth = localStorage.getItem('userId');
+if (ifAuth) { 
+  signin.classList.remove('signin_active');
+  userId.textContent = localStorage.getItem('userId');
+  welcome.classList.add('welcome_active');
+}
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -17,6 +25,8 @@ form.addEventListener('submit', e => {
         signin.classList.remove('signin_active');
         welcome.classList.add('welcome_active');
         userId.textContent = xhr.response.user_id;
+        localStorage.setItem('userId', userId.textContent);
+        form.reset();
     } else {
         alert('Неверный логин/пароль');
     }
@@ -25,3 +35,10 @@ form.addEventListener('submit', e => {
   xhr.open('POST', form.action);
   xhr.send(formData);
 });
+
+singoutBtn.addEventListener('click', e => {
+  e.preventDefault();
+  localStorage.clear();
+  signin.classList.add('signin_active');
+  welcome.classList.remove('welcome_active');
+})
