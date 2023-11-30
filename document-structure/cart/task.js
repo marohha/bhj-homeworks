@@ -5,7 +5,6 @@ const add = Array.from(document.querySelectorAll('.product__add'));
 const product = Array.from(document.querySelectorAll('.product'));
 const image = Array.from(document.querySelectorAll('.product__image'));
 const bin = document.querySelector('.cart__products');
-let products = [];
 
 for (let i = 0; i < quantityValue.length; i++) {
     plus[i].onclick = () => {
@@ -19,11 +18,15 @@ for (let i = 0; i < quantityValue.length; i++) {
     }
 
     add[i].onclick = () => {
-        const productInCard = products.find(el => el.getAttribute('data-id') === product[i].getAttribute('data-id'));
-        console.log(productInCard)
         if (Number(quantityValue[i].textContent) > 0) {
+            let productsInCard = Array.from(document.getElementsByClassName('cart__product'));
+            let productCount = Array.from(document.getElementsByClassName('cart__product-count')); 
+    
+            const productInCard = productsInCard.find(el => el.getAttribute('data-id') === product[i].getAttribute('data-id'));
+            let index = productsInCard.indexOf(productInCard);
+
             if (productInCard) {
-                productInCard.textContent = Number(productInCard.textContent) + Number(quantityValue[i].textContent);
+                productCount[index].textContent = Number(productInCard.textContent) + Number(quantityValue[i].textContent);
             } else {
                 bin.innerHTML +=
                     `<div class="cart__product" data-id="${product[i].getAttribute('data-id')}">
@@ -31,12 +34,7 @@ for (let i = 0; i < quantityValue.length; i++) {
                         <div class="cart__product-count">${quantityValue[i].textContent}</div>
                     </div>`;
             }
-            
-            products.push(product[i]);
-            console.log(products);
         }
-
-       
     }
 }
 
