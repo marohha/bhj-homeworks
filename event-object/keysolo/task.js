@@ -12,6 +12,7 @@ class Game {
     this.timerStart();
 
     this.registerEvents();
+    this.intervalId;
   }
 
   reset() {
@@ -112,7 +113,7 @@ class Game {
 
     this.timer.textContent = this.randomWord.length;
 
-    const intervalId = setInterval( () => {
+    this.intervalId = setInterval( () => {
       if (this.timer.textContent <= 0) {
         clearInterval(intervalId);
         alert('Вы проиграли!');

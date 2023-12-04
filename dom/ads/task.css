@@ -1,9 +1,39 @@
+.content {
+  width: 700px;
+  height: 700px;
+}
+.card {
+  display: flex;
+}
+
+.btn {
+  width: 100px;
+  height: 50px;
+}
+
 .rotator__case {
   display: none;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.rotator__case2 {
+  background-image: url('img/111.jpg');
+}
+
+.rotator__case1 {
+  background-image: url('img/IMG_1281.JPG');
+}
+
+.rotator__case3 {
+  background-image: url('img/IMG_9943.JPG');
 }
 
 .rotator__case_active {
-  display: inline;
+  display: block;
 }
 
 
